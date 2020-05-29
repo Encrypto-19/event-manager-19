@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils import timezone
 
 # Create your models here.
 class Board(models.Model):
@@ -17,7 +18,7 @@ class Board(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
-    start_date = models.DateTimeField(auto_now_add=True)
+    start_date = models.DateTimeField(default=timezone.now)
     end_date = models.DateTimeField()
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
