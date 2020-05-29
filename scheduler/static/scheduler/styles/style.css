@@ -1,0 +1,61 @@
+/* Global classes */
+.text-fluid-7{
+    font-size: 7vw;
+}
+
+.text-fluid-5{
+    font-size: 5vw;
+}
+
+.bt_shadow{
+    box-shadow: 0 0 5px 0px darkgray;
+}
+
+.flex_row_class{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.flex_col_class{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.bottom-right{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    z-index: 5;
+}
+
+
+/* css for board list */
+
+.box{
+    width: 200px;
+    height: 200px;
+    box-sizing: border-box;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.box2{
+    /* width: 200px; */
+    min-height: 200px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 20px;
+}
+
+
+.board_title{
+    font-size: x-large;
+}

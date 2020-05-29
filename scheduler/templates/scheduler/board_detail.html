@@ -1,0 +1,86 @@
+{% extends 'scheduler/base.html' %}
+
+{% block title %}Board Detail{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-5 text-center d-none  d-sm-block">
+    <h6 class="text-fluid-7">{{board.name}}</h6>
+    <div>
+        <a href="{% url 'board-update' board.id %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'board-delete' board.id %}" class="btn btn-danger">Delete</a>
+    </div>
+    {% if tasks|length != 0 %}
+    <table class="table table-striped  mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+            <tr>
+                <td><a href="{% url 'task-detail' task.id %}" class="text-decoration-none">{{task.title}}</a></td>
+                <td>{{task.start_date}}</td>
+                <td>{{task.end_date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h3>You have not added any tasks yet</h3>
+    {% endif %}
+</div>
+
+<div class="container flex_col_class d-block d-sm-none text-center mt-5">
+    <h2 class=" mb-5">{{board.name}}</h2>
+    <div>
+        <a href="{% url 'board-update' board.id %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'board-delete' board.id %}" class="btn btn-danger">Delete</a>
+        <br>
+        <a href="{% url 'task-create' board.id %}">Create a task</a>
+    </div>
+    {% if tasks|length != 0 %}
+
+    {% for task in tasks %}
+    <div class="box2 bt_shadow">
+        <a href="{% url 'task-detail' task.id %}" class="text-decoration-none">
+            <h3 class=" mb-2 ">{{task.title}}</h3>
+        </a>
+        <p class="text-muted">
+            {{task.description}}
+        </p>
+        <hr class="bg-warning">
+        Start: {{task.start_date}}
+        <br>
+        End: {{task.end_date}}
+        <hr>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="text-fluid-5">You have not added any tasks yet</p>
+    {% endif %}
+</div>
+
+<div class="bottom-right">
+    <a href="{% url 'task-create' board.id %}"><i class="fas fa-plus-circle fa-3x"></i></a>
+</div>
+
+
+{% endblock %}
+
+
+
+<!-- <h3 class="text-center">{{board.name}} by {{board.user.username}} detail</h3>
+
+{% for task in tasks %}
+{{task.title}}
+<br>
+{% endfor %}
+
+
+<hr>
+<a href="{% url 'task-create' board.id %}">Create a subtask</a> -->

@@ -1,0 +1,27 @@
+{% extends 'scheduler/base.html' %}
+
+{% block title %}
+
+Task Detail
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container text-center">
+    {{object.title}}
+    <br>
+    <br>
+    {{object.description}}
+    <br>
+    <br>
+    {{object.start_date}}
+    <br>
+    {{object.end_date}}
+    <br>    
+    <a href="{% url 'task-delete' object.id %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'task-update' object.id %}" class="btn btn-primary">Update</a>
+</div>
+
+{% endblock %}

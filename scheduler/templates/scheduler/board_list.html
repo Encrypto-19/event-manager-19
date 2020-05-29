@@ -1,0 +1,33 @@
+{% extends 'scheduler/base.html' %}
+
+{% block title %}Board List{% endblock %}
+
+
+{% block content %}
+
+<div class="container flex_row_class mt-5">
+    {% for object in objects %}
+    <div class="box text-center flex_col_class bt_shadow">
+        <div class="board_title">
+            {{object.name}}
+        </div>
+        <div class="board_button">
+            <a href="{% url 'board-detail' object.id %}" class="btn btn-outline-success">Open</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="bottom-right">
+    <a href="{% url 'board-create' %}"><i class="fas fa-plus-circle fa-3x"></i></a>
+</div>
+
+
+{% endblock %}
+
+
+<!-- <h3 class="text-center">All boards</h3>
+    <hr>
+{% for object in objects %}
+    <h2>{{object.name}}  {{object.user.username}}</h2><a href="{% url 'board-detail' object.id %}">Open</a>
+    <hr>
+{% endfor %} -->

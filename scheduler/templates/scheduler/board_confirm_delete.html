@@ -1,0 +1,24 @@
+{% extends 'scheduler/base.html' %}
+
+
+
+{% block title %}
+Delete Board
+{% endblock %}
+
+
+{% block content %}
+
+<div class="content-section text-center mt-5">
+    <form action="" method="POST">
+        {% csrf_token %}
+        You sure you want to delete the Board: {{object.name}}
+        <br>
+        Warning: Deleting a board would result in deletion of included tasks.
+        <br>
+        <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
+        <a class="btn btn-outline-secondary" href="{% url 'board-list' %}">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

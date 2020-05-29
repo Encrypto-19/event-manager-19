@@ -1,0 +1,18 @@
+{% extends 'scheduler/base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block title %}New Board{% endblock %}
+
+{% block content %}
+
+<div class="container p-3 mt-5">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
