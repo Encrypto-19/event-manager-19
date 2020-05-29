@@ -5,6 +5,7 @@ from .forms import BoardCreateForm, TaskCreateForm
 from .models import Board, Task
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 # Create your views here.
 
 
@@ -14,7 +15,7 @@ class HomeView(TemplateView):
 
 
 
-class BoardCreateView(CreateView):
+class BoardCreateView(LoginRequiredMixin, CreateView):
     model = Board
     form_class = BoardCreateForm
 
@@ -22,7 +23,7 @@ class BoardCreateView(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskCreateForm
 
@@ -39,7 +40,7 @@ class TaskCreateView(CreateView):
         return render(request, 'scheduler/task_form.html', {'form':form})
 
 
-class BoardListView(ListView):
+class BoardListView(LoginRequiredMixin, ListView):
     model = Board
     context_object_name = 'objects'
 
@@ -48,42 +49,73 @@ class BoardListView(ListView):
         user = get_object_or_404(User, username = self.request.user.username)
         return Board.objects.filter(user = user)
 
+
 # class BoardDetailView(DetailView):
 #     model = Board
 
 
-class BoardDetailView(View):
+class BoardDetailView(LoginRequiredMixin, UserPassesTestMixin, View):
     template_name = 'scheduler/board_detail.html'
 
     def get(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
-        print(pk)
         board = Board.objects.get(id = pk)
         tasks = Task.objects.filter(board = board)
         return render(request, self.template_name, {'board':board, 'tasks':tasks})
 
+    def test_func(self):
+        pk = self.kwargs.get('pk')
+        print(pk)
+        board = Board.objects.get(id = pk)
+        if board.user == self.request.user:
+            return True
+        return False
 
-class TaskDetailView(DetailView):
+
+class TaskDetailView(LoginRequiredMixin,UserPassesTestMixin, DetailView):
     model = Task
 
+    def test_func(self):
+        task = self.get_object()
+        if task.board.user == self.request.user:
+            return True
+        return False
 
-class TaskDeleteView(DeleteView):
+
+class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Task
     success_url = '/board/'
 
+    def test_func(self):
+        task = self.get_object()
+        return task.board.user == self.request.user
 
-class TaskUpdateView(UpdateView):
+
+class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Task
     fields = ['title', 'description', 'end_date']
 
-class BoardUpdateView(UpdateView):
+    def test_func(self):
+        task = self.get_object()
+        return task.board.user == self.request.user
+
+class BoardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Board
     fields = ['name']
 
+    def test_func(self):
+        board = self.get_object()
+        return board.user == self.request.user
 
-class BoardDeleteView(DeleteView):
+
+
+class BoardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Board
     success_url = '/board/'
+
+    def test_func(self):
+        board = self.get_object()
+        return board.user == self.request.user
 
 
 
