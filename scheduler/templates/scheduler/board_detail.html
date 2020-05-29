@@ -11,6 +11,7 @@
         <a href="{% url 'board-update' board.id %}" class="btn btn-primary">Update</a>
         <a href="{% url 'board-delete' board.id %}" class="btn btn-danger">Delete</a>
     </div>
+    <hr>
     {% if tasks|length != 0 %}
     <table class="table table-striped  mt-5">
         <thead>
@@ -37,11 +38,10 @@
 
 <div class="container flex_col_class d-block d-sm-none text-center mt-5">
     <h2 class=" mb-5">{{board.name}}</h2>
-    <div>
+    <div class="m-3">
         <a href="{% url 'board-update' board.id %}" class="btn btn-primary">Update</a>
         <a href="{% url 'board-delete' board.id %}" class="btn btn-danger">Delete</a>
         <br>
-        <a href="{% url 'task-create' board.id %}">Create a task</a>
     </div>
     {% if tasks|length != 0 %}
 

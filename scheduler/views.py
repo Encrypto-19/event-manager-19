@@ -36,7 +36,7 @@ class TaskCreateView(CreateView):
             form.save()
             return redirect('board-list')
         print('form invalid')
-        return render(request, 'users/task_form.html', {'form':form})
+        return render(request, 'scheduler/task_form.html', {'form':form})
 
 
 class BoardListView(ListView):
@@ -69,7 +69,7 @@ class TaskDetailView(DetailView):
 
 class TaskDeleteView(DeleteView):
     model = Task
-    success_url = '/'
+    success_url = '/board/'
 
 
 class TaskUpdateView(UpdateView):
@@ -83,7 +83,7 @@ class BoardUpdateView(UpdateView):
 
 class BoardDeleteView(DeleteView):
     model = Board
-    success_url = '/'
+    success_url = '/board/'
 
 
 

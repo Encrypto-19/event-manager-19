@@ -1,4 +1,8 @@
 /* Global classes */
+.btn_shadow{
+    box-shadow: 0 0 10px 0px darkgray;
+}
+
 .text-fluid-7{
     font-size: 7vw;
 }

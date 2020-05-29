@@ -4,19 +4,24 @@
 
 
 {% block content %}
-
+{% if objects|length != 0 %}
 <div class="container flex_row_class mt-5">
     {% for object in objects %}
     <div class="box text-center flex_col_class bt_shadow">
         <div class="board_title">
             {{object.name}}
         </div>
-        <div class="board_button">
+        <div class="board_button mt-4">
             <a href="{% url 'board-detail' object.id %}" class="btn btn-outline-success">Open</a>
         </div>
     </div>
     {% endfor %}
 </div>
+{% else %}
+<div class="mt-5 text-center">
+    <h3>You have not created any boards yet..!!</h3>
+</div>
+{% endif %}
 <div class="bottom-right">
     <a href="{% url 'board-create' %}"><i class="fas fa-plus-circle fa-3x"></i></a>
 </div>

@@ -9,19 +9,23 @@ Task Detail
 
 {% block content %}
 
-<div class="container text-center">
-    {{object.title}}
-    <br>
-    <br>
-    {{object.description}}
-    <br>
-    <br>
-    {{object.start_date}}
-    <br>
-    {{object.end_date}}
-    <br>    
-    <a href="{% url 'task-delete' object.id %}" class="btn btn-danger">Delete</a>
-    <a href="{% url 'task-update' object.id %}" class="btn btn-primary">Update</a>
+<div class="container text-center mt-5 d-flex justify-content-center">
+    <div class="card bt_shadow" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{object.title}}</h5>
+            <p class="card-text">{{object.description}}</p>
+            <br>
+            Start date: {{object.start_date}}
+            <br>
+            Deadline: {{object.end_date}}
+            <br>
+            <br>
+            <a href="{% url 'task-delete' object.id %}" class="btn btn-danger card-link">Delete</a>
+            <a href="{% url 'task-update' object.id %}" class="btn btn-primary card-link">Update</a>
+        </div>
+    </div>
+
+
 </div>
 
 {% endblock %}

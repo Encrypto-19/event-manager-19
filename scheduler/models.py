@@ -11,7 +11,7 @@ class Board(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('home')
+        return reverse('board-list')
 
 
 class Task(models.Model):
@@ -25,4 +25,4 @@ class Task(models.Model):
         return self.title + self.board.name
 
     def get_absolute_url(self):
-        return reverse('home')
+        return reverse('board-list')
