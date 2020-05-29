@@ -1,5 +1,5 @@
 # event-manager-19
-
+Frameworks used: Django(backend), Bootstrap(frontend).
 
 The project has been hosted on: https://event-manager-19.herokuapp.com/
 
