@@ -50,13 +50,8 @@
         <a href="{% url 'task-detail' task.id %}" class="text-decoration-none">
             <h3 class=" mb-2 ">{{task.title}}</h3>
         </a>
-        <p class="text-muted">
-            {{task.description}}
-        </p>
         <hr class="bg-warning">
-        Start: {{task.start_date}}
-        <br>
-        End: {{task.end_date}}
+        Deadline: {{task.end_date}}
         <hr>
     </div>
     {% endfor %}
