@@ -1,5 +1,5 @@
 # event-manager-19
-
+Frameworks used: Django(backend), Bootstrap(frontend).
 
 The project has been hosted on: https://event-manager-19.herokuapp.com/
 
@@ -18,6 +18,6 @@ Steps to use the website.
 4. After creating a Board the user can open it to find links to edit/delete a board. (Deleting a board will also delete tasks that are associated with it)
 
 ##  **Step 2: Making a Task**
-1. On opening a Board user can create a task in that board using to add button.
+1. On opening a Board user can create a task in that board using the add button.
 2. All tasks are listed in a table within each board.
-3. Selecting the title of a task will enable user to go to the task itself where user can see additional information or update/delete the task itself.
+3. Selecting the title of a task will enable user to go to the task itself where user can see additional information and can update/delete the task opened.
