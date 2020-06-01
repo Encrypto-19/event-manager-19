@@ -6,8 +6,16 @@
 {% block title %}New Board{% endblock %}
 
 {% block content %}
+<div class="container mt-3">
+    {% for message in messages %}
+        <div class="alert alert-warning alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+            {{message}}
+        </div>
+    {% endfor %}
+</div>
 
-<div class="container p-3 mt-5">
+<div class="container p-3 mt-1">
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{form|crispy}}

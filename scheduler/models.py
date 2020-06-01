@@ -18,7 +18,7 @@ class Board(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
-    start_date = models.DateTimeField(default=timezone.now)
+    start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
@@ -27,3 +27,4 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse('board-list')
+

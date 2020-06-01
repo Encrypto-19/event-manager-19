@@ -6,6 +6,17 @@ from .models import Board, Task
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.utils import timezone
+import pytz 
+from django.contrib import messages
+#########
+#anonymous functions
+def checkDate(start_date, end_date):
+    return start_date <= end_date
+
+
+
+
 # Create your views here.
 
 
@@ -34,8 +45,15 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
             print('forms valid')
             task = form.save(commit=False)
             task.board = Board.objects.get(id = pk)
-            form.save()
-            return redirect('board-list')
+            task.start_date = timezone.now()
+            print(task.start_date)
+            print('df')
+            print(task.end_date)
+            if checkDate(task.start_date, task.end_date) == True:
+                form.save()
+                return redirect('board-list')
+            
+            messages.info(request, 'Please check your End date')
         print('form invalid')
         return render(request, 'scheduler/task_form.html', {'form':form})
 
